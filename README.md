@@ -5,11 +5,18 @@ Step-by-step tutorial: [Read the blog post here.](https://serpapi.com/blog/acces
 
 ## How to run the basic sample
 
-Python env setup
+Python env setup (one time only)
 ```
-python -m venv env (one time only)
-source env/bin/activate
+python -m venv env 
+```
 
+Activate source
+```
+source env/bin/activate
+```
+
+Install Gemini Python SDK
+```
 pip install google-generativeai
 ```
 

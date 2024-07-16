@@ -38,6 +38,8 @@ get_answer_box_declaration = {
 }
 
 prompt = "It's freezing!, what is the temperature in London today? do you know it?"
+# prompt = "Morning! how is Tesla stock doing today? I just bought some shares yesterday."
+
 model = genai.GenerativeModel('gemini-1.5-flash')
 response = model.generate_content(
     prompt,
@@ -51,13 +53,13 @@ args = function_call.args
 function_name = function_call.name
 
 if function_name == 'get_answer_box':
-    # limit only first 500 characters
-    query = args['query'][:500]
-    result = get_answer_box(query)
+    result = get_answer_box(args['query'])
+
+data_from_api = json.dumps(result)[:500]
 
 response = model.generate_content(
     """
-    Based on this information: `""" + json.dumps(result) + """` 
+    Based on this information: `""" + data_from_api + """` 
     and this question: `""" + prompt + """`
     respond to the user in a friendly manner.
     """,
